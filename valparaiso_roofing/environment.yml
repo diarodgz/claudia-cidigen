@@ -1,0 +1,11 @@
+name: geo
+channels:
+  - defaults
+dependencies:
+  - python=3.11.9
+  - numpy
+  - ipykernel
+  - earthengine-api
+  - conda-forge::imageio
+  - conda-forge::matplotlib-scalebar
+prefix: C:\Users\class\miniconda3\envs\geo

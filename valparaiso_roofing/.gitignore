@@ -1,5 +1,19 @@
+datos/202406_shapes_personas_ant.zip
+datos/202609_igvust_comunal_cuartil.zip
+Cartografia_censo2024_R05.zip
 202406_shapes_hogares_ant.zip
 
-Cartografia_censo2024_R05.zip
+datos/202406_shapes_personas_ant/
+datos/202609_igvust_comunal_cuartil/
+datos/202406_shapes_hogares_ant/
+datos/cambio_urbano/
+
+datos/data_rsh_valpo.geojson
+datos/catastro.geojson
+datos/diccionario_hogares.xlsx
+datos/diccionario_personas.xlsx
+
+*.zip
+*.xlsx
 
 .vscode

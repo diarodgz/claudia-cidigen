@@ -7,13 +7,18 @@ datos/202406_shapes_personas_ant/
 datos/202609_igvust_comunal_cuartil/
 datos/202406_shapes_hogares_ant/
 datos/cambio_urbano/
+datos/202609_igvust_uv_cuartil
 
 datos/data_rsh_valpo.geojson
 datos/catastro.geojson
 datos/diccionario_hogares.xlsx
 datos/diccionario_personas.xlsx
+datos/Cartografia_censo2024_R05.gpkg
+
+*.kml
 
 *.zip
 *.xlsx
+*.pdf
 
 .vscode

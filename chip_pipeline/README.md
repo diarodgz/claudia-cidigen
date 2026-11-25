@@ -8,7 +8,7 @@ This repository/notebook turns a very large RGBA orthomosaic plus a DSM and a DE
 
 0. [Pipeline](#0-pipeline-at-a-glance)
 1. [Requirements and environment](#1-requirements-and-environment)
-2. [Inputs](#2-files-used-and-file-formats)
+2. [Inputs](#2-inputs)
 3. [Variables](#3-variable-definitions)
 4. [Tiling and identification of candidate structures](#4-tiling-and-identification-of-candidate-structures)
 5. [Object segmentation (SAM) and chip creation](#5-object-segmentation-sam-and-chip-creation)

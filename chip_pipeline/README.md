@@ -1,9 +1,6 @@
-# ____ (project title)
+# Chip Pipeline for GeoAI
 
-> **How to read this document.** Anything marked `____` was not provided and is left for you to fill in.
-> Values marked *(default in code)* are the defaults written in the notebook code; the **Value used** column is for the values you actually ran with.
-
-**Summary.** ____ 
+**Summary**
 
 This repository/notebook turns a very large RGBA orthomosaic plus a DSM and a DEM into a labeled dataset of 224 × 224 px image chips of elevated structures (roofs, trees and other objects taller than 2 m), ready for training or evaluating CLIP-style models. It is designed to be memory-efficient: the full orthomosaic, DSM and DEM are never loaded at full resolution, only one small window at a time.
 
@@ -47,10 +44,10 @@ DEM (GeoTIFF) ──────────────┘        + structure d
 
 | Stage | Notebook section / cell | Needs GPU |
 |---|---|---|
-| Tile grid, nDSM statistics, grouping | ____ | No |
-| SAM object finding and chip creation | ____ | **Yes** |
-| Labeling tool | ____ | No |
-| Export | ____ | No |
+| Tile grid, nDSM statistics, grouping | 1 | No |
+| SAM object finding and chip creation | 2 | **Yes** |
+| Labeling tool | 3 | No |
+| Export | 3 | No |
 
 ---
 
@@ -62,10 +59,10 @@ DEM (GeoTIFF) ──────────────┘        + structure d
 |---|---|
 | Platform | Google Colab Pro |
 | Runtime type | Python 3.13.16 |
-| Hardware accelerator | **GPU** (required for the SAM step; the notebook asserts `cuda`). GPU model: `____` |
+| Hardware accelerator | **GPU** (required for the SAM step; the notebook asserts `cuda`). GPU model: `T4` |
 | High-RAM runtime | `____` |
-| System RAM / disk shown by Colab | `____` / `____` |
-| Date of the runs | `____` |
+| System RAM / disk shown by Colab | `4.7` / `12.7` |
+| Date of the runs | `25/11/2026` |
 
 The tiling and nDSM steps run on CPU. The SAM step (section 5) needs a GPU runtime; with no GPU, loading SAM fails (see [Troubleshooting](#11-troubleshooting)).
 
@@ -73,7 +70,6 @@ The tiling and nDSM steps run on CPU. The SAM step (section 5) needs a GPU runti
 
 | Package | Used for | Version |
 |---|---|---|
-| Python | interpreter | ____ |
 | numpy | arrays (version 2.x or later: `ndarray.ptp` no longer exists, so the code uses `np.ptp`) | ____ |
 | pandas | tables, CSV reading and writing | ____ |
 | geopandas | tile table with geometries, plotting, parquet | ____ |

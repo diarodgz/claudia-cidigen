@@ -8,7 +8,7 @@ This repository/notebook turns a very large RGBA orthomosaic plus a DSM and a DE
 
 0. [Pipeline](#0-pipeline-at-a-glance)
 1. [Requirements and environment](#1-requirements-and-environment)
-2. [Files and formats](#2-files-used-and-file-formats)
+2. [Inputs](#2-files-used-and-file-formats)
 3. [Variables](#3-variable-definitions)
 4. [Tiling and identification of candidate structures](#4-tiling-and-identification-of-candidate-structures)
 5. [Object segmentation (SAM) and chip creation](#5-object-segmentation-sam-and-chip-creation)
@@ -126,13 +126,11 @@ print("CUDA build:", torch.version.cuda, "| GPU:", torch.cuda.get_device_name(0)
 
 ---
 
-## 2. Files used and file formats
-
-### 2.1 Inputs
+## 2. Inputs
 
 | Role | Variable | Format | Details |
 |---|---|---|---|
-| Orthomosaic | `dom_path` | GeoTIFF, 4 bands (R, G, B, alpha), `uint8`, nodata = 0 | Width 24,508 px × height 26,629 px. Pixel size about 0.0542 m (5.42 cm/px), derived from the bounds below; confirm with `src.res`. CRS: UTM-type coordinates, zone/EPSG `____`. Bounds: left 263910.9354684872, bottom 6341422.044243328, right 265239.2690684872, top 6342865.336043328 (about 1,328 × 1,443 m). The valid footprint is a rotated rectangle: about 43% of the bounding box has data (alpha > 0). Acquisition date `____`, sensor/platform `____`, file size `____`, internal tiling/compression `____` |
+| Orthomosaic | `DOM_PATH` | GeoTIFF, 4 bands (R, G, B, alpha), `uint8`, nodata = 0 | Width 24,508 px × height 26,629 px. Pixel size about 0.0542 m (5.42 cm/px), derived from the bounds below; confirm with `src.res`. CRS: UTM-type coordinates, zone/EPSG `____`. Bounds: left 263910.9354684872, bottom 6341422.044243328, right 265239.2690684872, top 6342865.336043328 (about 1,328 × 1,443 m). The valid footprint is a rotated rectangle: about 43% of the bounding box has data (alpha > 0). Acquisition date `____`, sensor/platform `____`, file size `____`, internal tiling/compression `____` |
 | DSM | `DSM_PATH` | GeoTIFF | Bands `____`, dtype `____`, resolution `____`, CRS `____`, nodata value `____`, vertical reference `____`, source/software `____` |
 | DEM | `DEM_PATH` | GeoTIFF | Bands `____`, dtype `____`, resolution `____`, CRS `____`, nodata value `____`, vertical reference `____`, how it was produced `____` |
 | SAM checkpoint | `CKPT` | PyTorch checkpoint (`.pth`) | `/content/drive/MyDrive/sam/sam_vit_b_01ec64.pth`, Meta AI Segment Anything **ViT-B** (base) weights. Downloaded from `https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth` |
@@ -140,13 +138,15 @@ print("CUDA build:", torch.version.cuda, "| GPU:", torch.cuda.get_device_name(0)
 
 Where the files live while the notebook runs: `____` (recommended: copy the three rasters from Drive to `/content` before running, because window reads over the Drive mount are slow).
 
-### 2.2 Requirements on the inputs
+Data comes from the original GeoAI project.
+
+### 2.1 Requirements on the inputs
 
 - The DSM and DEM are resampled **on the fly** to the orthomosaic's pixel grid (bilinear), so they do not need the same resolution or CRS as the orthomosaic. They must overlap it and use the same vertical reference.
 - nDSM = DSM − DEM, in the units of the DSM/DEM (assumed to be meters).
 - Pixels outside the orthomosaic footprint (alpha = 0) are set to nodata in the nDSM.
 
-### 2.3 Files written by the pipeline
+### 2.2 Files written by the pipeline
 
 All under `OUT = /content/drive/MyDrive/roof_chips` (change if needed: `____`).
 
@@ -388,17 +388,7 @@ There are no keyboard shortcuts; labeling is done by clicking.
 - At startup, existing `labels.csv` is loaded, so labeling can continue after a Colab restart.
 - The manifest (`chips.csv`) is never modified by the labeling tool.
 
-**Label definitions.** Fill in the criteria you use when labeling:
-
-| Label | Definition / criteria used | Example chips |
-|---|---|---|
-| light metal sheet | ____ | ____ |
-| oxidized metal sheet | ____ | ____ |
-| precarious/mixed | ____ | ____ |
-| vegetation | ____ | ____ |
-| other | ____ | ____ |
-
-Labeled chips: `____`; labeled by: `____`; labeling period: `____`.
+**Label definitions.** Critera follows the same ones established by the GeoAI project.
 
 ---
 

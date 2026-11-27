@@ -467,7 +467,12 @@ Total runtime of each stage in your run: tiling `____`, nDSM pass `____`, SAM an
 - **Overlap strips:** with `EDGE = "shift"`, the last tile in each row/column overlaps its neighbor. Per-tile statistics (such as `struct_px`) count pixels in the overlap twice when summed over tiles.
 - **nDSM quality:** photogrammetric DSMs smooth building edges, and the DEM may be interpolated under buildings. Check `ndsm_cover` and inspect tiles with `show_tile`.
 - **Objects at the image border:** chips can include black padding where the source window extends beyond the orthomosaic.
-- **Accuracy of the labels:** `____` (annotator agreement, review process, etc.).
+- **Accuracy of the labels:** Labels are currently being assigned by one author following the description of classes provided in the original GeoAI repository.
+- **Chip duplicates**: There are currently several chip duplicates. It is an issue that still needs to be addressed.
+- **Lack of spectral rules:** Spectral rules are still not in place.
+- **Chips with non-roofs**
+- **Chips in no existing category**
+- **Chips that are very distorted**
 
 ---
 
